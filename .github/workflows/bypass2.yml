@@ -1,0 +1,32 @@
+name: bypass attempts 2 (lab)
+# 다른 이름의 환경, 또는 환경 없이 Pages 를 직접 배포하려는 시도 — 거부돼야 한다.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  other-env:
+    runs-on: ubuntu-latest
+    environment: { name: other-env }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: ., name: pages-other }
+      - id: d
+        uses: actions/deploy-pages@v4
+        with: { artifact_name: pages-other }
+        continue-on-error: true
+      - run: echo "RESULT other-env deploy outcome=${{ steps.d.outcome }}"
+  no-env:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: ., name: pages-noenv }
+      - id: d
+        uses: actions/deploy-pages@v4
+        with: { artifact_name: pages-noenv }
+        continue-on-error: true
+      - run: echo "RESULT no-env deploy outcome=${{ steps.d.outcome }}"
