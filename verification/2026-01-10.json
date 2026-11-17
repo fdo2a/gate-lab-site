@@ -1,0 +1,12 @@
+{
+ "post": {
+  "path": "posts/2026-01-10.html",
+  "sha256": "f64de9316f3e6f880da1145436a7becf785aa1695d95140e55f890069922363c"
+ },
+ "gates": [
+  {
+   "name": "check_post",
+   "status": "pass"
+  }
+ ]
+}
