@@ -1,0 +1,2 @@
+<!doctype html><meta charset="utf-8"><title>gate lab</title><h1>gate lab</h1><p>실험용 페이지.</p><ul id="l"></ul>
+<script>fetch('posts.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{for(const p of d){const li=document.createElement('li');li.innerHTML='<a href="posts/'+p.date+'.html">'+p.date+' '+p.title+'</a>';document.getElementById('l').appendChild(li)}})</script>
